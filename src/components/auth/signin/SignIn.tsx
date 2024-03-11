@@ -1,6 +1,9 @@
 import React, { useRef } from "react";
 import { auth } from "../../../fireBase/FireBase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 const SignIn = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -9,11 +12,23 @@ const SignIn = () => {
   const signIn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
+    const emailValue = emailRef.current?.value || "";
+    const passwordValue = passwordRef.current?.value || "";
+
+    signInWithEmailAndPassword(auth, emailValue, passwordValue)
+      .then((authUser) => {
+        console.log(authUser);
+      })
+      .catch((error: Error) => {
+        alert(error.message);
+      });
+
     return;
   };
 
   const register = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
     const emailValue = emailRef.current?.value || "";
     const passwordValue = passwordRef.current?.value || "";
 
@@ -54,7 +69,10 @@ const SignIn = () => {
 
         <h4 className="text-left mt-7 ">
           <span className="text-gray-400 ">New to Netflix?</span>
-          <span className="hover:cursor-pointer" onClick={register}>
+          <span
+            className="hover:cursor-pointer hover:underline"
+            onClick={register}
+          >
             Sign up now.
           </span>
         </h4>
