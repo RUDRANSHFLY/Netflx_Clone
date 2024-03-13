@@ -46,12 +46,12 @@ const PlanScreen = () => {
         console.log("No products Found!");
       }
     };
-    return () => {
-      getProducts();
-    };
+    getProducts();
   }, []);
 
   const loadCheckout = async (priceID: string) => {
+    // this function us used to load the stripe checkout page
+
     const today = new Date();
     const formattedDate = `${today.getDate()}-${
       today.getMonth() + 2
