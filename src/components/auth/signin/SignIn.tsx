@@ -1,13 +1,12 @@
 import React, { useRef } from "react";
 import { auth } from "../../../fireBase/FireBase";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   const signIn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -26,25 +25,14 @@ const SignIn = () => {
     return;
   };
 
-  const register = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const redirect = () => {
+    console.log("Function Redirect Called");
 
-    const emailValue = emailRef.current?.value || "";
-    const passwordValue = passwordRef.current?.value || "";
-
-    createUserWithEmailAndPassword(auth, emailValue, passwordValue)
-      .then((authUser) => {
-        console.log(authUser);
-      })
-      .catch((error: Error) => {
-        alert(error.message);
-      });
-
-    return;
+    navigate("/signup");
   };
 
   return (
-    <div className="SignUpInScreen w-96 max-w-96 p-14  ml-auto mr-auto bg-black/85">
+    <div className="SignUpInScreen sm:w-96 max-w-96 sm:p-14 p-10 ml-auto mr-auto bg-black/85">
       <form className="grid flex-col">
         <h1 className="text-left mb-6 text-3xl tracking-wider">Sign In</h1>
         <input
@@ -70,8 +58,8 @@ const SignIn = () => {
         <h4 className="text-left mt-7 ">
           <span className="text-gray-400 ">New to Netflix?</span>
           <span
+            onClick={() => redirect()}
             className="hover:cursor-pointer hover:underline"
-            onClick={register}
           >
             Sign up now.
           </span>
