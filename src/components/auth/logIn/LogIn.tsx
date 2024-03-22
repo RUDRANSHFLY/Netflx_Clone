@@ -28,7 +28,11 @@ const LogIn = () => {
         <div className="w-full h-screen z-10 bg-black/40" />
       </div>
 
-      <div className="loginScreenBody w-full absolute top-28 left-0 right-0 sm:top-1/3 ml-auto mr-auto text-center z-20 text-white p-5">
+      <div
+        className={`loginScreenBody w-full absolute ${
+          sign ? "top-28 sm:top-14" : "top-28"
+        } left-0 right-0 sm:top-1/3 ml-auto mr-auto text-center z-20 text-white p-5`}
+      >
         {sign ? (
           <SignIn />
         ) : (
