@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { auth } from "./fireBase/FireBase";
 import { logIn, logOut, selectUser } from "./stateManagement/userReducer";
 import Profile from "./components/profile/Profile";
+import SignUp from "./components/auth/signUp/SignUp";
+import SignIn from "./components/auth/signin/SignIn";
 
 function App() {
   const user = useSelector(selectUser);
@@ -33,18 +35,17 @@ function App() {
 
   return (
     <>
-      <div className="app">
-        {!user ? (
-          <LogIn />
-        ) : (
-          <Router>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/profile" element={<Profile />} />
-            </Routes>
-          </Router>
-        )}
-      </div>
+      <Router>
+        <div className="app">
+          <Routes>
+            <Route path="/" element={!user ? <LogIn /> : <Home />} />
+            <Route path="/profile" element={!user ? <LogIn /> : <Profile />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/auth" element={<LogIn />} />
+          </Routes>
+        </div>
+      </Router>
     </>
   );
 }
