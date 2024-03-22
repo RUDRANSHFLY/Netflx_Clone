@@ -5,7 +5,7 @@ import allLinks from "../network/Request";
 
 const Home = () => {
   return (
-    <div className="home">
+    <div className="home overflow-x-hidden">
       <Navbar />
       <Banner />
       <Row
