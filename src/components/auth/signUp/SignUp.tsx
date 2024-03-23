@@ -46,7 +46,7 @@ const SignUp = () => {
       </div>
 
       <div
-        className={`loginScreenBody w-full absolute top-28 
+        className={`loginScreenBody w-full absolute top-20
         } left-0 right-0 sm:top-1/3 ml-auto mr-auto text-center z-20 text-white p-5`}
       >
         <div className="SignUpInScreen sm:w-96 max-w-96 sm:p-14 p-10 ml-auto mr-auto bg-black/85">
