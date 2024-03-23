@@ -15,7 +15,7 @@ const SignIn = () => {
     const passwordValue = passwordRef.current?.value || "";
 
     signInWithEmailAndPassword(auth, emailValue, passwordValue)
-      .then((authUser) => {
+      .then(() => {
         navigate("/");
       })
       .catch((error: Error) => {
